@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package proto;
+service Login{
+    // 方法 (请求消息结构体) returns (返回消息结构体) {}
+    rpc Login(login) returns(Reply){}
+}
+
+service Register{
+    rpc Register(register) returns (Reply){}
+
+}
+/*服务REady和playchess  返回的除了信息  应该还有棋盘
+但由于愚笨，我不知道该怎么设置，才可以使得服务器对客户端返回一个二维数组*/
+service Playchess{
+    rpc Playchess(playchess) returns(Reply){}
+}
+service Ready{
+    rpc Ready(ready) returns(Reply){}
+}
+
+
+service Surrender{
+    rpc Surrender(surrender) returns(Reply){}
+}
+message surrender{}
+
+message playchess{
+    int32 i=1;
+    int32 j=2;
+}
+message ready{}
+
+
+message login{
+    string username=1;
+    string password=2;
+}
+message register{
+    string username = 1;
+    string password = 2;
+}
+
+message Reply{
+    string message = 1;
+}
+message Reply2{
+    string message = 1;
+    message Edge{
+        repeated int32 i=1;
+    }
+    repeated Edge j=2;
+}
